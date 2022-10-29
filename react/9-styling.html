@@ -43,14 +43,18 @@
     <script type="text/babel">
       const root = document.getElementById('root');
       
-      function Box({size}) {
+      function Box({size, text}) {
           const boxSize = `box box--${size}`
           return <div>
-              <div ClassName="box box--small">box</div>
+              <div className={boxSize}>{text}</div>
             </div>
       }
       
-      let element = <Box size="medium"></Box>
+      let element = <div>
+        <Box size="medium" text="small box"></Box>
+        <Box size="large" text="small box"></Box>
+        <Box size="small" text="small box"></Box>
+        </div>
       ReactDOM.render(element, root)
      
     </script>
