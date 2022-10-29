@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById('root');
+      function Message({text}) {
+        return <div className={text.length ? 'alert alert-success' : 'alert alert-danger'}>
+           {`this text "${text}" has `}
+           {text.length ? <strong>{ text.length }</strong> : " No"}
+           {` characthers`}
+          </div>
+      }
+
+      let element = <div className="container gap-2">
+        <Message text="welcome to world"></Message>
+        <Message text=""></Message></div>
+      
+      
+      ReactDOM.render(element, root)
+    </script>
+  </body>
+
+ 
+</html>
