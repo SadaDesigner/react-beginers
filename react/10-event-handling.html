@@ -9,34 +9,7 @@
   
 </head>
 <body>
-  <style>
 
-    .box {
-      display: flex;
-      background-color: red;
-      color: white;
-      justify-content: center;
-      text-align: center;
-      margin: 1rem;
-    
-    }
-
-    .box--small {
-      width: 80px;
-      height: 80px;
-
-    }
-    .box--medium {
-      width: 140px;
-      height: 140px;
-      
-    }
-    .box--large {
-      width: 200px;
-      height: 200px;
-      
-    }
-  </style>
     <div id="root"></div>
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
@@ -44,20 +17,31 @@
    
     <script type="text/babel">
       const root = document.getElementById('root');
+      const state = {count: 0, username: 'sadashiv'}
+     
+     const App = () => {
       
-      function Box({size, text}) {
-          const boxSize = `box box--${size}`
-          return ( <div>
-              <div  className={boxSize}>{text}</div>
-            </div> )
+          const EventCount = () =>  changeState({count: state.count + 1})
+          const nameChange = (event) =>  changeState({username: event.target.value})
+
+        
+      
+          return <>
+                  <div>{state.count} <button onClick={EventCount}>click</button></div>
+                    <div>{state.username} 
+                      <div><input onChange={nameChange} type="text" /></div>
+                  </div>
+                </> 
+    }
+      
+      const changeState = (newstate) => {
+          Object.assign(state, newstate)
+          renderApp()
       }
+
+      const renderApp = () => {ReactDOM.render(<App />, root)}
+      renderApp()
       
-      let element = <div>
-        <Box  size="medium" text="medium box"></Box>
-        <Box size="large" text="large box"></Box>
-        <Box size="small" text="small box"></Box>
-        </div>
-      ReactDOM.render(element, root)
      
     </script>
   </body>

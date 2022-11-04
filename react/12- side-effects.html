@@ -9,34 +9,8 @@
   
 </head>
 <body>
-  <style>
+  
 
-    .box {
-      display: flex;
-      background-color: red;
-      color: white;
-      justify-content: center;
-      text-align: center;
-      margin: 1rem;
-    
-    }
-
-    .box--small {
-      width: 80px;
-      height: 80px;
-
-    }
-    .box--medium {
-      width: 140px;
-      height: 140px;
-      
-    }
-    .box--large {
-      width: 200px;
-      height: 200px;
-      
-    }
-  </style>
     <div id="root"></div>
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
@@ -44,20 +18,41 @@
    
     <script type="text/babel">
       const root = document.getElementById('root');
-      
-      function Box({size, text}) {
-          const boxSize = `box box--${size}`
-          return ( <div>
-              <div  className={boxSize}>{text}</div>
-            </div> )
+
+      let list = ['one', 'two']
+
+      function App() {
+        const [name, setName] = React.useState(
+          window.localStorage.getItem('username') || '',
+        )
+
+        React.useEffect(() => {
+         window.localStorage.setItem('username', name)
+        });
+
+        const handlechanges = (event) => {
+          setName(event.target.value)
+        
+          //window.localStorage.setItem('username', name)
+        }
+
+        return <>
+        <form>
+          <label for="">enter name</label>
+          <input type="text" onChange={handlechanges} />
+          </form>
+          {name}
+        
+        
+        </>
+
+
+       
       }
+
+      const renderApp = () => {ReactDOM.render(<App />, root)}
+      renderApp()
       
-      let element = <div>
-        <Box  size="medium" text="medium box"></Box>
-        <Box size="large" text="large box"></Box>
-        <Box size="small" text="small box"></Box>
-        </div>
-      ReactDOM.render(element, root)
      
     </script>
   </body>
