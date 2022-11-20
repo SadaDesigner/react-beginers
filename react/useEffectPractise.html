@@ -22,32 +22,21 @@
   <script type="text/babel">
     const root = document.getElementById('root');
 
-    function App() {
-      const time = new Date().toLocaleTimeString();
+    const App = () => {
+      const [username, setName] = React.useState(0);
+      const [password, setPassword] = React.useState(0);
+      React.useEffect(() => { console.log(username); console.log(password) }, [username])
 
-      return <div>{time}</div>
-
-
+      return <>
+        <h2>{username}</h2>
+        <h2>{password}</h2>
+        <button onClick={() => setName(username + 1)}>username</button>
+        <button onClick={() => setPassword(password + 100)}>password</button>
+      </>
 
     }
 
-    const RenderTime = () => {
-      ReactDOM.render(<App />, root)
-    }
-
-    setInterval(RenderTime, 1000)
-
-
-
-
-
-
-
-
-
-
-
-
+    ReactDOM.render(<App />, root)
 
 
   </script>
