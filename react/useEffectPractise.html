@@ -13,6 +13,12 @@
 
 <body>
 
+  <style>
+    #result {
+      color: red;
+    }
+  </style>
+
 
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
@@ -25,13 +31,20 @@
     const App = () => {
       const [username, setName] = React.useState(0);
       const [password, setPassword] = React.useState(0);
-      React.useEffect(() => { console.log(username); console.log(password) }, [username])
+      React.useEffect(() => { 
+        console.log(username); 
+        console.log(password) ;
+        document.getElementById('result').innerHTML = username + " " + password;
+      }, [username])
 
       return <>
+      <h5>DOM RENDER</h5>
         <h2>{username}</h2>
         <h2>{password}</h2>
         <button onClick={() => setName(username + 1)}>username</button>
         <button onClick={() => setPassword(password + 100)}>password</button>
+        <h5>USEEFFECT RENDER</h5>
+        <div id="result"></div>
       </>
 
     }
